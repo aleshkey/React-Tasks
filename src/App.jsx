@@ -6,6 +6,7 @@ import {Task2Component} from "./ui-components/tasks/task2/Task2Component.jsx";
 import {Task3Component} from "./ui-components/tasks/task3/Task3Component.jsx";
 import {Task4Component} from "./ui-components/tasks/task4/Task4Component.jsx";
 import {Task5Component} from "./ui-components/tasks/task5/Task5Component.jsx";
+import {Task6Component} from "./ui-components/tasks/task6/Task6Component.jsx";
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
                 <Route path={"/task3"} element={<Task3Component/>}/>
                 <Route path={"/task4"} element={<Task4Component/>}/>
                 <Route path={"/task5"} element={<Task5Component/>}/>
+                <Route path={"/task6"} element={<Task6Component/>}/>
             </Route>
         </Routes>
     );
