@@ -9,6 +9,7 @@ export const LayoutComponent = () => {
                 <Link to="task2">task 2</Link>
                 <Link to="task3">task 3</Link>
                 <Link to="task4">task 4</Link>
+                <Link to="task5">task 5</Link>
             </div>
             <Outlet />
         </>
