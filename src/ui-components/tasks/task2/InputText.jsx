@@ -1,27 +1,31 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import _ from 'lodash';
+import useDebounce from "../../../hooks/useDebounce.hook.js";
 
 export const InputText = ({min, max}) => {
     const [inputValue, setInputValue] = useState('');
     const [error, setError] = useState('');
+    const [touched, setTouched] = useState(false);
 
-    const debouncedValidation = _.debounce((value) => {
-        if (value.length > max) {
-            setError(`Нельзя ввести больше чем ${max} символов`);
-            return;
+    const debouncedValue = useDebounce(inputValue, 600);
+
+    useEffect(() => {
+        if (touched) {
+            if (debouncedValue.length > max) {
+                setError(`Нельзя ввести больше чем ${max} символов`);
+            } else if (debouncedValue.length < min) {
+                setError(`Вам нужно ввести минимум ${min} символов`);
+            } else {
+                setError("");
+            }
         }
-        if (value.length < min) {
-            setError(`Вам нужно ввести минимум ${min} символов`);
-            return;
-        }
-        setError("");
-    }, 600);
+    }, [debouncedValue, min, max, touched]);
 
 
     const changeInputValue = (event$) => {
         const { value } = event$.target;
         setInputValue(value);
-        debouncedValidation(value);
+        setTouched(true);
     }
 
 
